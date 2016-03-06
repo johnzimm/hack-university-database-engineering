@@ -1,4 +1,7 @@
 #!/bin/bash
+
+exit 1
+
 sudo su - postgres
 psql
 CREATE USER vagrant with CREATEUSER;
