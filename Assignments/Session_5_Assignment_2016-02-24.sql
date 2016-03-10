@@ -1,4 +1,6 @@
-﻿-- TASKS
+﻿SELECT * from crimedataraw;
+
+-- TASKS
 
 -- 1. select the crime types and counts into a temp table.  
 --    select 1 record from this table and then delete that record.  
@@ -13,6 +15,20 @@ WHERE major_offense_type IN (SELECT major_offense_type FROM crime_temp LIMIT 1);
 SELECT * FROM crime_temp;
 --- Above is not quite correct
 ------
+SELECT major_offense_type, COUNT(*) AS occurences
+INTO TEMP t
+FROM crimedataraw
+GROUP BY major_offense_type;
+
+SELECT * FROM t ORDER BY major_offense_type LIMIT 10;
+
+DELETE FROM t
+WHERE major_offense_type = (SELECT major_offense_type FROM t ORDER BY major_offense_type LIMIT 1);
+
+SELECT * FROM t ORDER BY major_offense_type LIMIT 10;
+
+DROP TABLE t;
+
 
 -- 2. create a CTE to join crimedataraw and the two related tables.  select * from it (10 rows).
 
