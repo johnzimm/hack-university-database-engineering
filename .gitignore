@@ -10,3 +10,4 @@ data/*
 !data/*.gz
 !data/*.tar
 !data/*.gz
+.ipynb_checkpoints*
